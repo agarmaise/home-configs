@@ -2,6 +2,8 @@
 	defaultBranch = main
 [core]
 	excludesfile = ~/.gitignore_global
+	autocrlf = false
+	eol = lf
 [diff]
 	tool = vimdiff
 	guitool = webstorm
