@@ -27,8 +27,6 @@ zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
 zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
-source ~/.secrets
-
 export EDITOR=vim
 export MSYS=winsymlinks:nativestrict
 export DISABLE_AUTO_TITLE=true
@@ -48,24 +46,13 @@ complete -F _todo todo
 
 shh() { "$@" &> /dev/null }
 
-alias -g rdr="/Applications/Rider.app/Contents/MacOS/rider"
-alias rdh="rdr *.sln &> /dev/null &"
-alias xrd="xargs rdr"
-alias -g wb="/Applications/WebStorm.app/Contents/MacOS/webstorm"
-alias wbh="wb . &> /dev/null &"
-alias xwb="xargs wb"
-alias kwb="ps -e | grep '/Applications/WebStorm.app/Contents/MacOS/webstorm' | head -1 | awkp 1 | xargs kill -15"
 
 alias xvim="xargs -o vim"
 
-alias cursor-ide="/usr/local/bin/cursor"
-alias cursor="agent"
-alias cursor-agent="agent"
+awkp() { awk -v i=$1 '{ print (i == "NF" ? $NF : $i) }' }
 
 alias vz="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
-
-awkp() { awk -v i=$1 '{ print (i == "NF" ? $NF : $i) }' }
 
 xsi() { xargs sed -i "$@" }
 
@@ -98,32 +85,6 @@ ins() {
     if [[ $should_execute -eq 0 ]]; then
         eval $next_cmd
     fi
-}
-
-alias yarna="TARGETS=assets yarn start:standalone"
-alias yarnia="yarn install && yarna"
-alias cdusd="cd ~/Projects/unity-services-dashboard"
-alias cdac="cd ~/Projects/asset-cloud"
-
-alias jqts-raw="jq '.[] | select(.fileName == \"udash.assets\") | .messages | del(.[] | .locales | .de_DE, .fr_FR, .pt_BR, .ru_RU, .es_XN) | map(select(.locales | .ja_JP and .ko_KR and .zh_CN | not)) | del(.[] | .locales)'"
-alias jqts="curl https://cdn.cloud.unity.com/translation-status/translation-status.json | jqts-raw"
-alias jqtsl="jqts-raw translation-status.json"
-
-alias ghopen="start \`git remote -v | grep fetch | sed -r 's/.*git@(.*):(.*)\.git.*/http:\/\/\1\/\2/' | head -n1\`"
-alias chrome-dev="open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir=$HOME/tmp/chrome_dev_test --disable-web-security"
-
-focus_iterm2() {
-    osascript <<EOF
-tell application "System Events" to tell process "iTerm2"
-    set frontmost to true
-    perform action "AXRaise" of the last window
-end tell
-EOF
-}
-
-ggl() {
-    (open -gju "https://www.google.com/search?q=$(jq -r @uri <<< \"$@\")" &
-    focus_iterm2 &> /dev/null)
 }
 
 alias -g gitcg="git checkout --guess"
@@ -179,65 +140,3 @@ tlog () {
     tlog_output=~/logs/$1-$(date +%s%3N).log
     tee $tlog_output
 }
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/util-linux/bin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/util-linux/sbin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="$HOME/Projects/depot_tools:$PATH"
-
-MANPATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnuman:$MANPATH"
-MANPATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnuman:$MANPATH"
-MANPATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnuman:$MANPATH"
-export MANPATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:${MANPATH}"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-
-load-nvmrc() {
-  local nvmrc_path
-  nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version
-    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-      nvm use
-    fi
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
-# pnpm
-export PNPM_HOME="~/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-export PATH="$HOME/.local/bin:$PATH"
-
-autoload bashcompinit && bashcompinit
-source $(brew --prefix)/etc/bash_completion.d/az
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f ~/google-cloud-sdk/path.zsh.inc ]; then . ~/google-cloud-sdk/path.zsh.inc; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f ~/google-cloud-sdk/completion.zsh.inc ]; then . ~/google-cloud-sdk/completion.zsh.inc; fi
