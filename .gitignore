@@ -8,9 +8,6 @@
 
 !/.config
 /.config/*
-!/.config/iterm2
-/.config/iterm2/*
-!/.config/iterm2/settings
 !/.config/oh-my-zsh
 !/.config/tmuxinator
 !.tmux.conf
