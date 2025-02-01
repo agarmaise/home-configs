@@ -8,25 +8,13 @@ zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
 zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
 zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
-source ~/.secrets
-
 export EDITOR=vim
 export MSYS=winsymlinks:nativestrict
 export DISABLE_AUTO_TITLE=true
 export LESS='-RFX'
 
-alias -g wb="/Applications/WebStorm.app/Contents/MacOS/webstorm"
-alias xwb="xargs wb"
-
 alias vz="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
-
-alias yarna="TARGETS=assets yarn start:standalone"
-alias yarnia="yarn install && yarna"
-alias cdusd="cd ~/Projects/unity-services-dashboard"
-alias cdmw="cd ~/Projects/asset-cloud-frontend-services"
-
-alias jqts="jq '.[] | select(.fileName == \"udash.assets\") | .messages | del(.[] | .locales | .de_DE, .fr_FR, .pt_BR, .ru_RU, .es_XN) | map(select(.locales | .ja_JP and .ko_KR and .zh_CN | not)) | del(.[] | .locales)' translation-status.json"
 
 alias ghopen="start \`git remote -v | grep fetch | sed -r 's/.*git@(.*):(.*)\.git.*/http:\/\/\1\/\2/' | head -n1\`"
 alias chrome-dev="open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir='/tmp/chrome_dev_test' --disable-web-security"
@@ -69,22 +57,3 @@ gitcb () {
 		echo 'No branches deleted on remote'
 	fi
 }
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
-export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:${PATH}"
-
-MANPATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnuman:$MANPATH"
-MANPATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnuman:$MANPATH"
-MANPATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnuman:$MANPATH"
-export MANPATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:${MANPATH}"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
