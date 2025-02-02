@@ -6,19 +6,12 @@
 	eol = lf
 [diff]
 	tool = vimdiff
-	guitool = webstorm
 [difftool]
 	prompt = false
-[difftool "webstorm"]
-	cmd = '/Applications/WebStorm.app/Contents/MacOS/webstorm' diff "$LOCAL" "$REMOTE"
 [merge]
 	tool = vimdiff
-	guitool = webstorm
 [mergetool]
 	keepBackup = false
-[mergetool "webstorm"]
-	cmd = '/Applications/WebStorm.app/Contents/MacOS/webstorm' merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
-	trustExitCode = true
 [push]
 	default = simple
 	autoSetupRemote = true
