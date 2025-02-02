@@ -17,7 +17,6 @@ alias vz="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
 
 alias ghopen="start \`git remote -v | grep fetch | sed -r 's/.*git@(.*):(.*)\.git.*/http:\/\/\1\/\2/' | head -n1\`"
-alias chrome-dev="open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir='/tmp/chrome_dev_test' --disable-web-security"
 
 alias gitf="git status -s | sed s/...//"
 alias gitfr='gitf | awk '\''{ print ($3 == "") ? $1 : $3; }'\'
