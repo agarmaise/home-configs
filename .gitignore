@@ -12,8 +12,6 @@
 !/.config
 /.config/*
 !/.config/oh-my-zsh
-!/.config/tmuxinator
-!.tmux.conf
 
 !.oh-my-zsh
 
