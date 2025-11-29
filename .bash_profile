@@ -29,7 +29,8 @@ gitcb () {
   if [ ${#gone_branches[@]} -gt 0 ]; then
     echo 'Branches to be deleted:'
     printf '%s\n' "${gone_branches[@]}"
-    read 'response?'$'\n''Remove branches? (y/n) '
+    printf 'Remove branches? (y/n) '
+    read response
     if [[ "$response" =~ ^[yY]$ ]]; then
       printf '%s\n' "${gone_branches[@]}" | xargs -r git branch -D
     else
