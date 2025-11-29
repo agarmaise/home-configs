@@ -11,9 +11,6 @@
 
 !/.config
 /.config/*
-!/.config/oh-my-zsh
-
-!.oh-my-zsh
 
 !.todo.cfg
 
@@ -21,7 +18,5 @@
 /.vim/*
 !/.vim/plugged
 !.vimrc
-
-!.zshrc
 
 !scripts/
