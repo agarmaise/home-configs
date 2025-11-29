@@ -2,7 +2,7 @@
 	defaultBranch = main
 [core]
 	excludesfile = ~/.gitignore_global
-	autocrlf = false
+	autocrlf = input
 	eol = lf
 [diff]
 	tool = vimdiff
