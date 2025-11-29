@@ -3,7 +3,12 @@ export EDITOR=vim
 alias todo="todo.sh"
 alias xvim="xargs -o vim"
 
-awkp() { awk -v i=$1 '{ print (i == "NF" ? $NF : $i) }' }
+awkp() {
+  awk -v i=$1 '{ print (i == "NF" ? $NF : $i) }'
+}
+
+alias git_main_branch="echo -n main"
+alias git_develop_branch="echo -n dev"
 
 alias gitbv="git branch -vv"
 alias gitcg="git checkout --guess"
@@ -18,21 +23,21 @@ alias gitrb="git checkout $(git_main_branch) && git pull && git checkout - && gi
 alias gitrba="git checkout $(git_main_branch) && git pull && gitmi | xargs -i sh -c 'git checkout {} && git rebase $(git_main_branch)'"
 
 gitcb () {
-	git remote update origin --prune > /dev/null 2>&1
-    gone_branches=(${(f)"$(< <(git branch -vv | grep ': gone]' | awk '{ print $1 }'))"})
+  git remote update origin --prune > /dev/null 2>&1
+  gone_branches=($(git branch -vv | grep ': gone]' | awk '{ print $1 }'))
 
-	if [ ${#gone_branches[@]} -gt 0 ]; then
-		echo 'Branches to be deleted:'
-		printf '%s\n' "${gone_branches[@]}"
-		read 'response?'$'\n''Remove branches? (y/n) '
-		if [[ "$response" =~ ^[yY]$ ]]; then
-			printf '%s\n' "${gone_branches[@]}" | xargs -r git branch -D
-		else
-			echo 'Goodbye'
-		fi
-	else
-		echo 'No branches deleted on remote'
-	fi
+  if [ ${#gone_branches[@]} -gt 0 ]; then
+    echo 'Branches to be deleted:'
+    printf '%s\n' "${gone_branches[@]}"
+    read 'response?'$'\n''Remove branches? (y/n) '
+    if [[ "$response" =~ ^[yY]$ ]]; then
+      printf '%s\n' "${gone_branches[@]}" | xargs -r git branch -D
+    else
+      echo 'Goodbye'
+    fi
+  else
+    echo 'No branches deleted on remote'
+  fi
 }
 
 gitum () {
