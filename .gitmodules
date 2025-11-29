@@ -7,9 +7,6 @@
 [submodule ".vim/plugged/vim-enfocado"]
 	path = .vim/plugged/vim-enfocado
 	url = git@github.com:wuelnerdotexe/vim-enfocado.git
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
-	url = git@github.com:ohmyzsh/ohmyzsh.git
 [submodule ".vim/plugged/vim-easy-align"]
 	path = .vim/plugged/vim-easy-align
 	url = git@github.com:junegunn/vim-easy-align.git
