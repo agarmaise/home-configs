@@ -1,3 +1,4 @@
+source ~/.bashrc
 export EDITOR=vim
 
 alias todo="todo.sh"
