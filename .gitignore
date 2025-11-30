@@ -12,6 +12,7 @@
 
 !/.config
 /.config/*
+!/.config/starship.toml
 
 !.todo.cfg
 
