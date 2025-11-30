@@ -1,3 +1,4 @@
+alias todo="todo-txt"
 alias xvim="xargs -o vim"
 
 awkp() {
