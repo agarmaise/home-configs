@@ -16,6 +16,7 @@ set redrawtime=1000
 set re=0
 set background=dark
 set termguicolors
+set showcmd
 inoremap kj <Esc>
 autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 autocmd Filetype typescript setlocal ts=2 sw=2 expandtab
