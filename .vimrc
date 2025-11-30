@@ -17,6 +17,7 @@ set redrawtime=1000
 set relativenumber
 set shellcmdflag=-ic
 set shiftwidth=4
+set showcmd
 set smartcase
 set tabstop=4
 set updatetime=1000
