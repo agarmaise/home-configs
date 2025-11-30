@@ -1,5 +1,6 @@
 source ~/.bashrc
 export EDITOR=vim
+export LESS='-RFX'
 
 alias todo="todo.sh"
 alias xvim="xargs -o vim"
