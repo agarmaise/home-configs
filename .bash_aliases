@@ -12,7 +12,7 @@ alias gitcg="git checkout --guess"
 alias gitd="git diff $(git_main_branch) --merge-base --name-only"
 alias gitf="git status -s | sed s/...//"
 alias gitfr='gitf | awk '\''{ print ($3 == "") ? $1 : $3; }'\'
-alias gitmi="git for-each-ref refs/heads --exclude='**/$(git_main_branch)' --format='%(authorname)%09%(refname:short)' | grep -i avery | awk -F\t '{ print \$2 }'"
+alias gitmi="git for-each-ref refs/heads --exclude='**/$(git_main_branch)' --format='%(authorname)%09%(refname:short)' | grep -i avery | awk -F'\t' '{ print \$2 }'"
 alias gitmm="git checkout $(git_main_branch) && git pull && git checkout - && git merge $(git_main_branch) --no-edit"
 alias gitnm="git for-each-ref refs/heads --exclude='**/$(git_main_branch)' --format='%(authorname)%09%(refname)' | grep -iv avery | grep -oP '(?<=refs/heads/)(.*)'"
 alias gitr="git hash-object -t tree /dev/null"
