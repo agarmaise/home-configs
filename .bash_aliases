@@ -90,15 +90,6 @@ gitcb () {
   fi
 }
 
-# Jest
-alias spec="sed -r -e 's/^([^.]*)(\.spec)?(\.\w+)$/\1.spec\3/' | sort | uniq | paste -sd\| - | sed -r -e 's/^|$/'\''/g'"
-alias tspec="sed -r -e 's/^([^.]*)(\.spec)?(\.\w+)$/\1\3\n\1.spec\3/' | sort | uniq | paste -sd\| - | sed -r -e 's/^|$/'\''/g'"
-
-alias jtest="xargs yarn test --noStackTrace --"
-alias jtestcov="xargs -I{} yarn test --noStackTrace --coverage --collectCoverageFrom={} -- {}"
-
-jtestcovf () { yarn test --noStackTrace --coverage --collectCoverageFrom="$1"'/**/*' -- "$1"; }
-
 # Todo
 alias todo="todo.sh"
 
