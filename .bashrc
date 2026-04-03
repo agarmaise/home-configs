@@ -83,8 +83,6 @@ alias spec="sed -r -e 's/^([^.]*)(\.spec)?(\.\w+)$/\1.spec\3/' | sort | uniq | p
 
 alias jtest="xargs yarn test --noStackTrace --"
 alias jtestcov="xargs -I{} yarn test --noStackTrace --coverage --collectCoverageFrom={} -- {}"
-alias jtesta="yarn test --noStackTrace -- app/services/assets"
-alias jtu="yarn test $WIP_FEATURE_PATH"
 
 jtestcovf () {
   yarn test --noStackTrace --coverage --collectCoverageFrom="$1"'/**/*' -- "$1"
