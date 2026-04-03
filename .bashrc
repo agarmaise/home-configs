@@ -20,16 +20,16 @@ _todo()
 
 complete -F _todo todo
 
-shh() { "$@" &> /dev/null }
+shh() { "$@" &> /dev/null; }
 
 alias xvim="xargs -o vim"
 
-awkp() { awk -v i=$1 '{ print (i == "NF" ? $NF : $i) }' }
+awkp() { awk -v i=$1 '{ print (i == "NF" ? $NF : $i) }'; }
 
 alias vz="vim ~/.zshrc"
 alias sz="source ~/.zshrc"
 
-xsi() { xargs sed -i "$@" }
+xsi() { xargs sed -i "$@"; }
 
 ins() {
   last_cmd=(${=$(fc -ln -1)})
@@ -63,15 +63,15 @@ ins() {
 }
 
 alias git_main_branch='echo main'
-alias -g gitcg="git checkout --guess"
-alias -g gitgr="git grep --recurse-submodules"
+alias gitcg="git checkout --guess"
+alias gitgr="git grep --recurse-submodules"
 alias gitf="git status -s | sed s/...//"
 alias gitfr='gitf | awk '\''{ print ($3 == "") ? $1 : $3; }'\'
-gitd() { git diff $(git_main_branch) --merge-base --name-only }
+gitd() { git diff $(git_main_branch) --merge-base --name-only; }
 alias clorig="git clean -fdx --exclude node_modules -- '*.orig'"
 alias cljs="git clean -fdx --exclude node_modules -- '*.js'"
-gitmi() { git for-each-ref refs/heads --exclude='**/$(git_main_branch)' --format='%(authorname)%09%(refname:short)' | grep -i avery | awk -F\t '{ print $2 }' }
-gitnm() { git for-each-ref refs/heads --exclude='**/$(git_main_branch)' --format='%(authorname)%09%(refname)' | grep -iv avery | grep -oP '(?<=refs/heads/)(.*)' }
+gitmi() { git for-each-ref refs/heads --exclude='**/$(git_main_branch)' --format='%(authorname)%09%(refname:short)' | grep -i avery | awk -F\t '{ print $2 }'; }
+gitnm() { git for-each-ref refs/heads --exclude='**/$(git_main_branch)' --format='%(authorname)%09%(refname)' | grep -iv avery | grep -oP '(?<=refs/heads/)(.*)'; }
 alias gitbv="git branch -vv"
 alias gitr="git hash-object -t tree /dev/null"
 gitum () {
@@ -90,9 +90,9 @@ jtestcovf () {
   yarn test --noStackTrace --coverage --collectCoverageFrom="$1"'/**/*' -- "$1"
 }
 
-gitmm() { git checkout $(git_main_branch) && git pull && git checkout - && git merge $(git_main_branch) --no-edit }
-gitrb() { git checkout $(git_main_branch) && git pull && git checkout - && git rebase $(git_main_branch) }
-gitrba() { git checkout $(git_main_branch) && git pull && gitmi | xargs -i sh -c 'git checkout {} && git rebase $(git_main_branch)' }
+gitmm() { git checkout $(git_main_branch) && git pull && git checkout - && git merge $(git_main_branch) --no-edit; }
+gitrb() { git checkout $(git_main_branch) && git pull && git checkout - && git rebase $(git_main_branch); }
+gitrba() { git checkout $(git_main_branch) && git pull && gitmi | xargs -i sh -c 'git checkout {} && git rebase $(git_main_branch)'; }
 
 gitcb () {
   git remote update origin --prune > /dev/null 2>&1
