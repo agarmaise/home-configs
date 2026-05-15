@@ -11,12 +11,13 @@ set hlsearch                  " highlight all search results
 set ignorecase                " do case insensitive search
 set incsearch                 " show incremental search results as you type
 set noswapfile
+set nrformats+=alpha
 set number                    " display line number
 set re=0
 set redrawtime=1000
 set relativenumber
-set shellcmdflag=-ic
 set shiftwidth=4
+set showcmd
 set smartcase
 set tabstop=4
 set updatetime=1000
@@ -45,9 +46,10 @@ runtime macros/matchit.vim
 call plug#begin()
 
 Plug 'junegunn/vim-easy-align'
-Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-lastpat'
+Plug 'kana/vim-textobj-user'
+Plug 'mechatroner/rainbow_csv'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'subnut/visualstar.vim'
 Plug 'tpope/vim-abolish'
@@ -63,6 +65,12 @@ Plug 'tpope/vim-vinegar'
 Plug 'wuelnerdotexe/vim-enfocado'
 
 call plug#end()
+
+augroup speed_dating_format
+    autocmd!
+    autocmd VimEnter * SpeedDatingFormat! %v
+    autocmd VimEnter * SpeedDatingFormat! %^v
+augroup end
 
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
